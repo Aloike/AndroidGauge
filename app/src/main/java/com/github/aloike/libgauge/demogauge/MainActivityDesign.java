@@ -110,7 +110,7 @@ public class MainActivityDesign extends AppCompatActivity {
         /*
             Dirty testing of some value display functionality
          */
-        m_binding.gauge21.getValueDisplay().setDisplayFormat("% 1.01f");
+        m_binding.gauge21.getValueDisplay().setValueDisplayFormat("% 1.01f");
         m_binding.gauge21.getValueDisplay().setUnitText("bar");
 
 

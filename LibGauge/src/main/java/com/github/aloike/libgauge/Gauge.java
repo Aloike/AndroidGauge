@@ -15,19 +15,18 @@ import com.github.aloike.libgauge.parts.Needle;
 import com.github.aloike.libgauge.parts.NeedleAxis;
 import com.github.aloike.libgauge.parts.ValueDisplay;
 
-//public class Gauge extends View {
+
 public class Gauge extends FixedAspectRatioFrameLayout {
 
-    private Angles          m_angles        = new Angles();
-    private Range           m_range         = new Range();
+    private Angles          m_angles                = new Angles();
+    private PointF          m_center                = new PointF();
+    private Range           m_range                 = new Range();
+    private float           m_valueCurrent          = 0f;
 
-    private PointF          m_center        = new PointF();
-    private float           m_valueCurrent  = 0f;
-
-    private Dial            m_dial          = new Dial();
-    private Needle          m_needle        = new Needle();
-    private NeedleAxis      m_needleAxis    = new NeedleAxis();
-    private ValueDisplay    m_valueDisplay  = new ValueDisplay();
+    protected Dial          m_dial          = new Dial();
+    protected Needle        m_needle        = new Needle();
+    protected NeedleAxis    m_needleAxis    = new NeedleAxis();
+    protected ValueDisplay  m_valueDisplay  = new ValueDisplay();
 
 
     public Gauge(Context context, AttributeSet attrs) {
@@ -68,42 +67,46 @@ public class Gauge extends FixedAspectRatioFrameLayout {
     }
 
 
-//    public int  backgroundColor(){
-//        return this.m_dial.backgroundColor();
-//    }
-
-
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(Canvas canvas)
+    {
         super.onDraw(canvas);
 
 
         /* Draw the gauge dial */
-        this.m_dial.draw(canvas, this.m_range, this.m_angles);
+        this.m_dial.draw(
+                canvas,
+                this.m_range,
+                this.m_angles
+        );
 
         /* Draw the value display */
-        this.m_valueDisplay.draw(canvas, this.m_range, this.m_valueCurrent);
+        this.m_valueDisplay.draw(
+                canvas,
+                this.m_range,
+                this.m_valueCurrent
+        );
 
         /* Draw the needle */
         if(this.isEnabled()) {
-            this.m_needle.draw(canvas, this.m_range, this.m_angles, this.m_valueCurrent);
+            this.m_needle.draw(
+                    canvas,
+                    this.m_range,
+                    this.m_angles,
+                    this.m_valueCurrent
+            );
         }
 
         /* Draw the needle axis */
-        this.m_needleAxis.draw(canvas);
+        this.m_needleAxis.draw(
+                canvas
+        );
     }
 
     @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+    protected void onSizeChanged(int w, int h, int oldw, int oldh)
+    {
         super.onSizeChanged(w, h, oldw, oldh);
-
-        // Account for padding
-        float lPaddingX = (float)(getPaddingLeft() + getPaddingRight());
-        float lPaddingY = (float)(getPaddingTop() + getPaddingBottom());
-
-
-        float ww = (float)w - lPaddingX;
-        float hh = (float)h - lPaddingY;
 
         // Ask for a dial update on next redraw
         this.m_dial.invalidate();
@@ -150,19 +153,6 @@ public class Gauge extends FixedAspectRatioFrameLayout {
         this.invalidate();
     }
 
-//    public int  getBackgroundColor()
-//    {
-//        return this.m_dial.backgroundColor()
-//    }
-//
-//    public void setBackgroundColor(int pColor)
-//    {
-//        this.m_dial.setBackgroundColor( pColor );
-//
-//        this.m_dial.invalidate();
-//        this.invalidate();
-//        //requestLayout();
-//    }
 
     public Range    getRange()
     {

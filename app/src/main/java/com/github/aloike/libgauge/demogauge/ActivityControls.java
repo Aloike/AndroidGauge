@@ -125,9 +125,6 @@ public class ActivityControls extends AppCompatActivity {
         this.m_binding.includedContentScrolling.sbValueRangeMax.setOnSeekBarChangeListener(
                 lListenerSeekBar_UpdateGauge
         );
-
-
-
     }
 
     private void    dialBackgroundColorPicker()

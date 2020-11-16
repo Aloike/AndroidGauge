@@ -190,16 +190,6 @@ public class ValueDisplay {
         return retval;
     }
 
-    public String   getDisplayFormat()
-    {
-        return this.m_displayFormatStr;
-    }
-
-    public void     setDisplayFormat(String pFormatStr)
-    {
-        this.m_displayFormatStr = pFormatStr;
-    }
-
     public boolean  isEnabled()
     {
         return this.m_enabled;
@@ -243,6 +233,16 @@ public class ValueDisplay {
         }
 
         this.m_unitTextSizeFactor_pc    = pFactor_pc;
+    }
+
+    public String   getValueDisplayFormat()
+    {
+        return this.m_displayFormatStr;
+    }
+
+    public void     setValueDisplayFormat(String pFormatStr)
+    {
+        this.m_displayFormatStr = pFormatStr;
     }
 
     public int      getValueTextColor()
