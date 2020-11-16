@@ -17,6 +17,7 @@ public class Dial
     private int     m_backgroundColor   = Color.BLACK;
     private Paint   m_backgroundPaint   = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Bitmap  m_bitmap            = Bitmap.createBitmap(1,1, Bitmap.Config.ARGB_8888);;
+    protected float m_valueRangeFactor  = 1.0f;
 
     private boolean     m_updateRequested   = true;
 
@@ -160,9 +161,19 @@ public class Dial
         }
 
 
-        /* Draw graduations */
+        /*
+            Draw graduations
+        */
+        /* Take into account the dial value range factor */
+        Range   lRangeWithFactor    = new Range();
+        lRangeWithFactor.setValueDisplayRange(
+                pRange.getValueDisplayMin(),
+                pRange.getValueDisplayMax() );
+        lRangeWithFactor.setGraduationRange(
+                pRange.getGraduationMin() / this.getValueRangeFactor(),
+                pRange.getGraduationMax() / this.getValueRangeFactor() );
         for (Graduation lGraduation : m_graduations) {
-            lGraduation.draw(lCanvas, pRange, pAngles);
+            lGraduation.draw(lCanvas, lRangeWithFactor, pAngles);
         }
 
 
@@ -203,5 +214,27 @@ public class Dial
     public List<Section>  getSectionsList()
     {
         return this.m_sections;
+    }
+
+
+    public float    getValueRangeFactor()
+    {
+        return this.m_valueRangeFactor;
+    }
+
+
+    /**
+     * To set a factor on the dial values. Useful in cases where you use large numbers, like engine
+     * RPM, and you want to show only a shot value (like "2" on the dial while the value is 2000).
+     *
+     * @param pFactor The factor to apply on the range.
+     *
+     * @see #getLabelsList() to add a new label showing the factor (it has to be done manually).
+     */
+    public void setValueRangeFactor(float pFactor)
+    {
+        this.m_valueRangeFactor = pFactor;
+
+        this.invalidate();
     }
 }
