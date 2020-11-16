@@ -182,6 +182,20 @@ public class Gauge extends FixedAspectRatioFrameLayout {
         return this.m_dial;
     }
 
+    public Needle   getNeedle()
+    {
+        this.invalidate(); // Dirty fixup to check whether my background color update problem comes from here...
+
+        return this.m_needle;
+    }
+
+    public NeedleAxis   getNeedleAxis()
+    {
+        this.invalidate(); // Dirty fixup to check whether my background color update problem comes from here...
+
+        return this.m_needleAxis;
+    }
+
     public ValueDisplay getValueDisplay()
     {
         return this.m_valueDisplay;
