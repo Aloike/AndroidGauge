@@ -1,0 +1,91 @@
+import java.text.SimpleDateFormat
+
+/* apply the plugins we added to use Bintray & Maven to deploy the lib */
+apply plugin: 'com.jfrog.bintray'
+
+
+
+/* To conform to the Maven standards, our library should also have a JAR file containing the
+ * library’s source files. To generate the JAR file, we create a new Jar task,
+ * `generateSourcesJar`, and specify the location of the source files using the `from` function.
+ */
+task generateSourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier 'sources'
+}
+
+/* It is also recommended that our library has a JAR file containing its Javadocs. Here we create a
+ * new Javadoc task, `generateJavadocs`, to generate them. We use the source variable to specify the
+ * location of the source files. We also update the classpath variable so that the task can find
+ * classes that belong to the Android SDK. We do this by adding the return value of the
+ * `android.getBootClasspath` method to it.
+ */
+task generateJavadocs(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath()
+            .join(File.pathSeparator))
+}
+
+/* Next, to generate a JAR from the Javadocs, we create a Jar task, `generateJavadocsJar`, and pass
+ * the `destinationDir` property of `generateJavadocs` to its from function. */
+task generateJavadocsJar(type: Jar) {
+    from generateJavadocs.destinationDir
+    classifier 'javadoc'
+}
+
+/* To make sure the `generateJavadocsJar` task only starts when the `generateJavadocs` task has
+ * completed, we add the following code snippet, which uses the dependsOn method to order the tasks:
+ */
+generateJavadocsJar.dependsOn generateJavadocs
+
+/* To include the source and Javadoc JAR files in the list of artifacts, which will be uploaded to
+ * the Maven repository, we add the names of their tasks to a configuration called archives. */
+artifacts {
+    archives generateJavadocsJar
+    archives generateSourcesJar
+}
+
+bintray {
+//    user = System.getenv('BINTRAY_USER')
+//    key = System.getenv('BINTRAY_KEY')
+    user = 'aloike'
+    key = '3d94db0faa120029c8dbb33c55c1050aa9ad4b4a'
+
+    pkg {
+        /** Existing repository in bintray to add the artifacts to (for example: 'generic', 'maven' etc) */
+        repo = 'Maven'
+
+        /** Package name */
+        name = 'com.github.aloike.libgauge'
+
+        /** your package licenses (mandatory if the package doesn't exist yet and must be created,
+         *  and if the package is an OSS package; optional otherwise). */
+        licenses = ['Apache-2.0']
+
+        publish = true
+
+        /** your VCS URL (mandatory if the package doesn't exist yet and must be created, and if the
+         *  package is an OSS package; optional otherwise). */
+        vcsUrl = 'https://github.com/Aloike/AndroidLibGauge.git'
+
+        websiteUrl = 'https://github.com/Aloike/AndroidLibGauge'
+
+        version {
+            /** Version name */
+            name = '0.0.3'
+
+            /** Optional - Version description */
+            desc = 'My test upload of pre-alpha release.'
+
+            /** Optional - Date of the version release. Can accept one of the following formats:
+             *  + Date in the format of 'yyyy-MM-dd'T'HH:mm:ss.SSSZZ';
+             *  + java.util.Date instance. */
+            released  = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZZ", Locale.ENGLISH).format(new Date())
+
+            /** Optional - Version control tag name */
+//            vcsTag = '0.0.1'
+        }
+
+    }
+    configurations = ['archives']
+}

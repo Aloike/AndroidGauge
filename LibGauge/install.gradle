@@ -1,0 +1,44 @@
+apply plugin: 'com.github.dcendents.android-maven'
+
+
+/* The Bintray plugin will look for a POM file when it uploads the library. Even though the Maven
+ * plugin generates it for us, we should specify the value of the groupId tag and the value of the
+ * version tag ourselves. */
+group = 'com.github.aloike.libgauge' // Change this to match your package name
+version = '0.0.3' // Change this to match your version number
+
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'
+                groupId 'com.github.aloike.libgauge' // CREATE A GROUP ID FOR YOUR LIBRARY
+                artifactId 'LibGauge' // THE NAME OF YOUR MODULE
+
+                name 'LibGauge' // YOUR LIBRARY NAME
+                description 'An Android library that provides a customizable "cockpit-like" gauge.' // YOUR LIBRARY DESCRIPTION
+                url 'https://github.com/Aloike/AndroidLibGauge' // YOUR SITE
+
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'aloike' //YOUR ID
+//                        name 'MyName' //YOUR NAME
+                        email 'aloike.go@gmail.com' //YOUR EMAIL
+                    }
+                }
+                scm {
+                    connection 'https://github.com/Aloike/AndroidLibGauge.git' // YOUR GIT REPO
+                    developerConnection 'https://github.com/Aloike/AndroidLibGauge.git' // YOUR GIT REPO
+                    url 'https://github.com/Aloike/AndroidLibGauge' // YOUR SITE
+                }
+            }
+        }
+    }
+}

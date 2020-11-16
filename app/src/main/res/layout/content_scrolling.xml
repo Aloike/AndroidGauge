@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ActivityControls"
+    tools:showIn="@layout/activity_controls">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="@dimen/text_margin"-->
+<!--                android:layout_weight="10"-->
+<!--                android:text="Test." />-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="@dimen/text_margin"-->
+<!--            android:text="@string/large_text" />-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_weight="100"
+            android:gravity="fill_horizontal"
+            android:orientation="horizontal"
+            android:padding="5sp">
+
+            <!--            <com.github.aloike.libgauge.Gauge-->
+            <!--                android:id="@+id/gaugeControls"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="0sp"-->
+            <!--                android:layout_gravity="center"-->
+            <!--                android:layout_weight="10"-->
+            <!--                app:backgroundColor="#00FF00" />-->
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <com.github.aloike.libgauge.Gauge
+                android:id="@+id/gaugeControls"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"/>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView"
+            style="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="General" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="10">
+
+            <!--
+                Enabled
+            -->
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Enabled" />
+
+                <CheckBox
+                    android:id="@+id/cbEnabled"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:checked="true" />
+            </TableRow>
+
+
+            <!--
+                Angles
+            -->
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:id="@+id/textViewAngleBegin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Angle - Begin" />
+
+                <SeekBar
+                    android:id="@+id/sbAngleBegin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:max="360"
+                    android:min="-360"
+                    android:progress="-135" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:id="@+id/textViewAngleEnd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Angle - End" />
+
+                <SeekBar
+                    android:id="@+id/sbAngleEnd"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="10"
+                    android:max="360"
+                    android:min="-360"
+                    android:progress="135" />
+            </TableRow>
+
+
+            <!--
+                Range
+            -->
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Value Range - Min" />
+
+                <SeekBar
+                    android:id="@+id/sbValueRangeMin"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="10"
+                    android:min="-200"
+                    android:max="200"
+                    android:progress="-100" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Grad. Range - Min" />
+
+                <SeekBar
+                    android:id="@+id/sbGraduationRangeMin"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="10"
+                    android:min="-200"
+                    android:max="200"
+                    android:progress="0" />
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Grad. Range - Max" />
+
+                <SeekBar
+                    android:id="@+id/sbGraduationRangeMax"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="10"
+                    android:min="-200"
+                    android:max="200"
+                    android:progress="100" />
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Value Range - Max" />
+
+                <SeekBar
+                    android:id="@+id/sbValueRangeMax"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="10"
+                    android:min="-200"
+                    android:max="200"
+                    android:progress="150" />
+            </TableRow>
+
+
+            <!--
+                Current value
+            -->
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Current value" />
+
+                <SeekBar
+                    android:id="@+id/sbValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="10"
+                    android:min="-200"
+                    android:max="200"
+                    android:progress="0" />
+            </TableRow>
+
+
+            <!-- ###############################################################
+                Dial
+            -->
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    style="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Dial" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Background color" />
+
+                <Button
+                    android:id="@+id/bDialBackgroundColor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10" />
+            </TableRow>
+
+        </TableLayout>
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
