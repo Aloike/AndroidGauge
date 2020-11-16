@@ -5,7 +5,7 @@ apply plugin: 'com.github.dcendents.android-maven'
  * plugin generates it for us, we should specify the value of the groupId tag and the value of the
  * version tag ourselves. */
 group = 'com.github.aloike.libgauge' // Change this to match your package name
-version = '0.0.4' // Change this to match your version number
+version = '0.0.5' // Change this to match your version number
 
 
 install {

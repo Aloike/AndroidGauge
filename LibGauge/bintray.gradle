@@ -72,10 +72,10 @@ bintray {
 
         version {
             /** Version name */
-            name = '0.0.4'
+            name = '0.0.5'
 
             /** Optional - Version description */
-            desc = 'Some accessors have been added.'
+            desc = 'Mainly added the "dial factor" functionality.'
 
             /** Optional - Date of the version release. Can accept one of the following formats:
              *  + Date in the format of 'yyyy-MM-dd'T'HH:mm:ss.SSSZZ';
