@@ -72,10 +72,10 @@ bintray {
 
         version {
             /** Version name */
-            name = '0.0.3'
+            name = '0.0.4'
 
             /** Optional - Version description */
-            desc = 'My test upload of pre-alpha release.'
+            desc = 'Some accessors have been added.'
 
             /** Optional - Date of the version release. Can accept one of the following formats:
              *  + Date in the format of 'yyyy-MM-dd'T'HH:mm:ss.SSSZZ';
